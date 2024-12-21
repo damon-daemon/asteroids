@@ -11,13 +11,17 @@ def main():
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     player = Player(SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2)
+    updateable = pygame.sprite.Group(player)
+    drawable = pygame.sprite.Group(player)
     while(True):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
-        player.draw(screen)
-        player.update(dt)
+        for update in updateable:
+            update.update(dt)
+        for draw in drawable:
+            draw.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         print(dt)
