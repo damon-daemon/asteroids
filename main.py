@@ -34,6 +34,7 @@ def main():
         for shot in shots_group:
             shot.update(dt)
             shot.draw(screen)
+            player.timer -= dt
         for update in updatable:
             update.update(dt)
         for draw in drawable:
